@@ -1,0 +1,11 @@
+2023-04-11 11:04:148 INFO  LoggerHelper:120 - Entered goToHomePage succesfully
+2023-04-11 11:04:186 INFO  LoggerHelper:134 - click on location box successfully
+2023-04-11 11:04:632 INFO  LoggerHelper:167 - Clicked on  location box  successfully
+2023-04-11 11:04:634 INFO  LoggerHelper:201 - click on search box successfully
+2023-04-11 11:04:588 INFO  LoggerHelper:228 - Clicked on  search box  successfully
+2023-04-11 11:04:593 INFO  LoggerHelper:285 - check delivery page successfully
+2023-04-11 11:04:745 INFO  LoggerHelper:289 - checked delivery page successfully
+2023-04-11 11:04:745 INFO  LoggerHelper:260 - click on cart btn successfully
+2023-04-11 11:04:357 INFO  LoggerHelper:269 - clicked on cart btn successfully
+2023-04-11 11:04:357 INFO  LoggerHelper:301 - click on proceed to cart btn successfully
+2023-04-11 11:04:590 INFO  LoggerHelper:309 - clicked on proceed to  cart btn successfully
