@@ -1,7 +1,16 @@
 package config;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Duration;
 import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 import enums.DriverType;
 
 
@@ -12,7 +21,7 @@ import enums.DriverType;
 
 public class ConfigFileReader {  
 
-	private  static final  Properties properties = new Properties();
+	private  static final Properties properties = new Properties();
 	private static final  Properties properties_env = new Properties();
 	static {
 	try {
@@ -31,10 +40,11 @@ public class ConfigFileReader {
 		}
 }
 
-	public static  String getDriverPath(){
+	public static  String getDriverPath() throws MalformedURLException{
 		String driverPath = null;
 		String browserName = properties.getProperty("browser");
 		if(DriverType.CHROME.name().equalsIgnoreCase(browserName)) {
+			
 			driverPath = properties.getProperty("chromeDriverPath");
 		}else if(DriverType.FIREFOX.name().equalsIgnoreCase(browserName)){
 			driverPath = properties.getProperty("firefoxDriverPath");
@@ -55,16 +65,18 @@ public class ConfigFileReader {
 		return 30;
 	}
 
-	public static  long getExplicitWait() {
+	public static  Duration getExplicitWait() {
 		String explicitWait = properties.getProperty("explicitWait");
 		if(explicitWait != null) {
 			try{
-				return Long.parseLong(explicitWait);
+				//return Duration.parse(explicitWait);
+				//return Long.parseLong(explicitWait);
 			}catch(NumberFormatException e) {
 				throw new RuntimeException("Not able to parse value : " + explicitWait + " in to Long");
 			}
 		}
-		return 30;
+		//return 30;
+		return Duration.parse(explicitWait);
 	}
 
 	public static  String getApplicationUrl() {
@@ -210,6 +222,7 @@ public class ConfigFileReader {
 		String filePath = "src/test/resources/configs/Environment.properties";
 		in = new FileInputStream(filePath);
 	    p=new Properties();  
+	    
 	    try {
 			p.load(in);
 		} catch (IOException e) {
@@ -265,4 +278,47 @@ public class ConfigFileReader {
 		return getRunCount;
 	}
 
+	public static String getSelGridData() throws MalformedURLException 
+	{
+		
+
+//		String targetEnv;
+//		String url;
+//		String urlKey;
+////		String targetUrl;	 
+//
+//
+//		DesiredCapabilities caps=  new DesiredCapabilities();
+//		caps.setBrowserName(properties_env.getProperty("browser"));
+//		caps.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+//	//	caps.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+//
+//		//caps.setPlatform(Platform.LINUX);
+//		//WebDriver driver = new RemoteWebDriver(new URL("http://192.168.123.129:5555"), caps);
+//		targetEnv = properties_env.getProperty("target_env");
+//		urlKey = targetEnv+"_SelGridURL";
+//		url = properties_env.getProperty(urlKey);
+//
+//		if(url != null) return url;
+//		
+//		
+//		
+//		else throw new RuntimeException("Selenium grid Url not specified in the Configuration.properties file for the Key:url");
+//		
+		
+		String nodeUrl="http://localhost:4444/wd/hub";
+		DesiredCapabilities caps=  new DesiredCapabilities();
+		//caps.setBrowserName("chrome");
+		caps.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+		caps.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+		
+	 
+	    
+		WebDriver driver = new RemoteWebDriver(new URL(nodeUrl), caps);
+//		
+		return nodeUrl;
+		
+	}
+
+	
 }

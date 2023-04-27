@@ -9,8 +9,8 @@ import io.cucumber.testng.FeatureWrapper;
 import io.cucumber.testng.PickleWrapper;
 import io.cucumber.testng.TestNGCucumberRunner;
 
-@CucumberOptions(features = "src/test/resources/features/1mg.feature", glue = { "stepdefs" },
-tags = "@1mgTest", 
+@CucumberOptions(features = "src/test/resources/features/OrangeHrmLogin.feature", glue = { "stepdefs" },
+tags = "@LoginPage",
 plugin={"pretty", "html:target/HtmlReports.html"
 		,"json:target/jsonR"
 				+ ""
@@ -31,7 +31,7 @@ public class TestRunner
 		
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 
-	}
+}
 
 //	@Test(groups = "cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
 //	public void feature(CucumberFeatureWrapper cucumberFeature) {
